@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>多工序制造车间实时排产模拟</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header id="topbar">
+  <div class="brand">🏭 多工序车间排产模拟</div>
+  <div class="clock-box">
+    <span id="clock">D1 08:00</span>
+    <span id="clock-state" class="paused">已暂停</span>
+  </div>
+  <div class="controls">
+    <button id="btn-toggle" class="primary">▶ 开始</button>
+    <select id="speed">
+      <option value="1">1x</option>
+      <option value="4" selected>4x</option>
+      <option value="10">10x</option>
+    </select>
+    <span class="sep"></span>
+    <button id="ev-urgent" class="evt urgent">🚨 紧急插单</button>
+    <button id="ev-breakdown" class="evt breakdown">🔧 设备故障</button>
+    <button id="ev-rework" class="evt rework">🔁 质检返工</button>
+    <button id="ev-material" class="evt material">📦 物料延迟</button>
+    <span class="sep"></span>
+    <button id="btn-reset">↺ 重置</button>
+  </div>
+</header>
+
+<main id="layout">
+  <aside id="left">
+    <section class="panel">
+      <h2>订单列表 <span class="hint">点击行定位工序</span></h2>
+      <div id="order-list"></div>
+    </section>
+    <section class="panel">
+      <h2>⚠ 实时风险检测</h2>
+      <div id="alerts"></div>
+    </section>
+  </aside>
+
+  <section id="center">
+    <div id="gantt-wrap">
+      <div id="gantt-header"></div>
+      <div id="gantt-body"></div>
+    </div>
+    <div id="legend"></div>
+  </section>
+
+  <aside id="right">
+    <section class="panel" id="op-panel-wrap">
+      <h2>工序调整</h2>
+      <div id="op-panel"><p class="muted">点击甘特图中的工序块进行设备调整或顺序调整（同机台内可拖拽排序）。</p></div>
+    </section>
+    <section class="panel">
+      <h2>事件日志</h2>
+      <div id="log"></div>
+    </section>
+  </aside>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
